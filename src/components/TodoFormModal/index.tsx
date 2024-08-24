@@ -1,18 +1,7 @@
-import React, { useEffect } from 'react';
 import { Modal, Form, Input, Button } from 'antd';
-
-interface TodoFormModalProps {
-  visible: boolean;
-  onCancel: () => void;
-  onSubmit: (values: TodoFormValues) => void;
-  initialValues: TodoFormValues;
-  isEditing: boolean;
-}
-
-export interface TodoFormValues {
-  title: string;
-  description: string;
-}
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import React from 'react';
+import { TodoFormModalProps, TodoFormValues } from '../../api/types';
 
 const TodoFormModal = ({ 
   visible, 
@@ -21,17 +10,27 @@ const TodoFormModal = ({
   initialValues, 
   isEditing 
 }: TodoFormModalProps) => {
-
   const [form] = Form.useForm();
+  const queryClient = useQueryClient();
 
-  // Set form values when modal is opened or initialValues changes
-  useEffect(() => {
+  // Use React Query mutation
+  const mutation = useMutation({
+    mutationFn: onSubmit,
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(['todos']);
+      form.resetFields();
+      onCancel();
+    },
+  });
+
+  // We still need this to set form values when modal is opened or initialValues changes
+  React.useEffect(() => {
     form.setFieldsValue(initialValues);
   }, [visible, initialValues, form]);
 
   const handleFinish = (values: TodoFormValues) => {
-    onSubmit(values);
-    form.resetFields();
+    mutation.mutate(values);
   };
 
   return (
@@ -64,7 +63,7 @@ const TodoFormModal = ({
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={mutation.isLoading}>
             {isEditing ? "Update Todo" : "Add Todo"}
           </Button>
         </Form.Item>

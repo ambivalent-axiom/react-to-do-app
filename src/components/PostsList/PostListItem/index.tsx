@@ -1,19 +1,12 @@
 import { Card, Typography, Button, Checkbox, Space } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-
-type PostListItemProps = {
-  title: string;
-  description: string;
-  completed: boolean;
-  onEdit: () => void;
-  onDelete: () => void;
-  onToggleCompleted: () => void;
-};
+import { EditOutlined, DeleteOutlined, FolderOpenOutlined } from '@ant-design/icons';
+import { PostListItemProps } from '../../../api/types';
 
 export const PostListItem = ({
   title,
   description,
   completed,
+  onShow,
   onEdit,
   onDelete,
   onToggleCompleted,
@@ -35,6 +28,9 @@ export const PostListItem = ({
         </Space>
         <Typography.Text>Description: {description}</Typography.Text>
         <Space style={{ marginTop: '8px' }}>
+          <Button icon={<FolderOpenOutlined />} onClick={onShow}>
+            Open
+          </Button>
           <Button icon={<EditOutlined />} onClick={onEdit}>
             Edit
           </Button>

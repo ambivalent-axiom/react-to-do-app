@@ -9,7 +9,7 @@ export const fetchData = async () => {
 };
 
 export const fetchTodoById = async (id: number) => {
-  const response = await fetch(`/api/todos/${id}`);
+  const response = await fetch(`http://localhost:3004/posts/${id}`);
   if (!response.ok) throw new Error('Network response was not ok');
   return response.json();
 };
