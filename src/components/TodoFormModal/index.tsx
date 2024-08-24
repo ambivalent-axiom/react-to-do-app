@@ -1,11 +1,12 @@
-// TodoFormModal.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Modal, Form, Input, Button } from 'antd';
 
 interface TodoFormModalProps {
   visible: boolean;
   onCancel: () => void;
   onSubmit: (values: TodoFormValues) => void;
+  initialValues: TodoFormValues;
+  isEditing: boolean;
 }
 
 export interface TodoFormValues {
@@ -13,8 +14,20 @@ export interface TodoFormValues {
   description: string;
 }
 
-const TodoFormModal: React.FC<TodoFormModalProps> = ({ visible, onCancel, onSubmit }) => {
+const TodoFormModal = ({ 
+  visible, 
+  onCancel, 
+  onSubmit, 
+  initialValues, 
+  isEditing 
+}: TodoFormModalProps) => {
+
   const [form] = Form.useForm();
+
+  // Set form values when modal is opened or initialValues changes
+  useEffect(() => {
+    form.setFieldsValue(initialValues);
+  }, [visible, initialValues, form]);
 
   const handleFinish = (values: TodoFormValues) => {
     onSubmit(values);
@@ -23,8 +36,8 @@ const TodoFormModal: React.FC<TodoFormModalProps> = ({ visible, onCancel, onSubm
 
   return (
     <Modal
-      visible={visible}
-      title="Add Todo"
+      open={visible}
+      title={isEditing ? "Edit Todo" : "Add Todo"}
       onCancel={onCancel}
       footer={null}
     >
@@ -32,6 +45,7 @@ const TodoFormModal: React.FC<TodoFormModalProps> = ({ visible, onCancel, onSubm
         form={form}
         layout="vertical"
         onFinish={handleFinish}
+        initialValues={initialValues}
       >
         <Form.Item
           label="Title"
@@ -51,7 +65,7 @@ const TodoFormModal: React.FC<TodoFormModalProps> = ({ visible, onCancel, onSubm
 
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Add Todo
+            {isEditing ? "Update Todo" : "Add Todo"}
           </Button>
         </Form.Item>
       </Form>

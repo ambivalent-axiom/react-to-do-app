@@ -1,18 +1,16 @@
 {
   "posts": [
     {
-      "id": "1",
-      "title": "a title",
-      "views": 100
+      "id": "a7b1",
+      "title": "ewwefwef",
+      "description": "wfwef",
+      "completed": true
     },
     {
-      "id": "2",
-      "title": "another title",
-      "views": 200
-    },
-    {
-      "id": "f1c9",
-      "title": "sdfsdf"
+      "id": "1bff",
+      "title": "wefwef",
+      "description": "wefwef",
+      "completed": false
     }
   ]
 }

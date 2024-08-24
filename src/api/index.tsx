@@ -1,24 +1,32 @@
+import { TodoFormValues } from "../components/TodoFormModal";
 import { Post } from "./types";
 
 export const fetchData = async () => {
     const response = await fetch('http://localhost:3004/posts');
+    if (!response.ok) throw new Error('Network response was not ok');
     const data: Post[] = await response.json();
     return data;
-    }
+};
+
+export const fetchTodoById = async (id: number) => {
+  const response = await fetch(`/api/todos/${id}`);
+  if (!response.ok) throw new Error('Network response was not ok');
+  return response.json();
+};
 
 export const createTodo = async ({
   title, 
-  views
+  description
 }: {
   title: string, 
-  views: number
+  description: string
 }) => {
   const response = await fetch('http://localhost:3004/posts', {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ title, views }),
+    body: JSON.stringify({ title, description }),
   });
 
   if (!response.ok) {
@@ -27,4 +35,47 @@ export const createTodo = async ({
 
   return response.json();
 };
-    
+
+export const updateTodo = async (todo: TodoFormValues & { id: number }) => {
+  const response = await fetch(`http://localhost:3004/posts/${todo.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(todo),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update Todo');
+  }
+
+  return response.json();
+};
+
+export const deleteTodo = async (id: number) => {
+  const response = await fetch(`http://localhost:3004/posts/${id}`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete todo');
+  }
+
+  return id; // Return the id of the deleted todo
+};
+
+export const toggleCompleted = async (todo: { id: number; completed: boolean }) => {
+  const response = await fetch(`http://localhost:3004/posts/${todo.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ completed: !todo.completed }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to toggle completed status');
+  }
+
+  return response.json(); // Return updated todo
+};

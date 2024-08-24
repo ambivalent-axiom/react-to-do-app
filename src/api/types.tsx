@@ -1,5 +1,6 @@
 export interface Post {
     id: string;
     title: string;
-    views: number;
+    description: string;
+    completed: boolean;
   }
