@@ -48,9 +48,9 @@ const App: React.FC = () => {
     mutationFn: toggleCompleted,
     onSuccess: () => {
       console.log('Invalidating todos query...');
-      console.log('Before invalidation:', queryClient.getQueryData(['todos']));
+      console.log('Before invalidation:', queryClient.getQueryData(['posts']));
       queryClient.invalidateQueries(['posts']);
-      console.log('After invalidation:', queryClient.getQueryData(['todos']));
+      console.log('After invalidation:', queryClient.getQueryData(['posts']));
     },
   });
 
