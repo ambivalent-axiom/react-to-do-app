@@ -8,7 +8,9 @@ Simple ToDo list app featuring creating ToDo records, deleting and editing Todo 
 </p>
 
 <h2>Features</h2>
-<img src="https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000">
+<img src="https://img.icons8.com/?size=60&id=uJM6fQYqDaZK&format=png&color=000000">
+<img src="https://img.icons8.com/?size=60&id=wPohyHO_qO1a&format=png&color=000000">
+<img src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg">
 
 <img src="to-do-app.gif"/>
 
