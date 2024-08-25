@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchTodoById, updateTodo, addComment, deleteComment, updateComment } from '../../api';
 import { Route } from '../../routes/show.$postId';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Card, Typography, Spin, Switch, List, Input, Button, Popconfirm, message, Layout, Divider } from 'antd';
+import { Card, Typography, Spin, Switch, message, Layout } from 'antd';
 import { Comment } from '../../api/types'
+import PostComments from './PostComments';
 
 const { Title, Text } = Typography;
 
@@ -90,6 +90,11 @@ const PostShow: React.FC = () => {
     }
   };
 
+  const handleCancelEdit = () => {
+    setEditingCommentId(null);
+    setEditedCommentContent('');
+  };
+
   return (
     <>
     <div className="p-2" style={{ marginLeft: '40px' }}>
@@ -109,59 +114,24 @@ const PostShow: React.FC = () => {
             />
           }>
             <Text>{post.description}</Text>
-            
-            <Title level={4} style={{ marginTop: 20 }}>Comments</Title>
-            <List
-              dataSource={post.comments}
-              renderItem={(comment: Comment) => (
-                <List.Item
-                  actions={[
-                    <Button icon={<EditOutlined />} onClick={() => handleEditComment(comment)} />,
-                    <Popconfirm
-                      title="Are you sure you want to delete this comment?"
-                      onConfirm={() => handleDeleteComment(comment.id)}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Button icon={<DeleteOutlined />} danger />
-                    </Popconfirm>
-                  ]}
-                >
-                  {editingCommentId === comment.id ? (
-                    <>
-                      <Input
-                        value={editedCommentContent}
-                        onChange={(e) => setEditedCommentContent(e.target.value)}
-                      />
-                      <Button onClick={handleUpdateComment}>Save</Button>
-                      <Button onClick={() => setEditingCommentId(null)}>Cancel</Button>
-                    </>
-                  ) : (
-                    <Text>{comment.content}</Text>
-                  )}
-                </List.Item>
-              )}
+          
+            <PostComments
+              comments={post.comments}
+              isEditing={editingCommentId}
+              editedCommentContent={editedCommentContent}
+              newComment={newComment}
+              onEditComment={handleEditComment}
+              onDeleteComment={handleDeleteComment}
+              onUpdateComment={handleUpdateComment}
+              onCancelEdit={handleCancelEdit}
+              onChangeEditContent={(e) => setEditedCommentContent(e.target.value)}
+              onChangeNewComment={(e) => setNewComment(e.target.value)}
+              onAddComment={handleAddComment}
             />
-            
-            <Input.TextArea
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              placeholder="Add a new comment"
-              style={{ marginTop: 20 }}
-            />
-            <Button
-              type="primary"
-              onClick={handleAddComment}
-              style={{ marginTop: 10 }}
-            >
-              Add Comment
-            </Button>
           </Card>
-    
         </Layout.Content>
       </Layout>
     </>
   );
 };
-  
 export default PostShow;

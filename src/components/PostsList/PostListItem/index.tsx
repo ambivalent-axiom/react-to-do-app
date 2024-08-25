@@ -1,4 +1,4 @@
-import { Card, Typography, Button, Checkbox, Space } from 'antd';
+import { Card, Typography, Button, Checkbox, Space, Popconfirm } from 'antd';
 import { EditOutlined, DeleteOutlined, FolderOpenOutlined } from '@ant-design/icons';
 import { PostListItemProps } from '../../../api/types';
 
@@ -34,9 +34,16 @@ export const PostListItem = ({
           <Button icon={<EditOutlined />} onClick={onEdit}>
             Edit
           </Button>
-          <Button icon={<DeleteOutlined />} danger onClick={onDelete}>
-            Delete
-          </Button>
+          <Popconfirm
+                      title="Are you sure you want to delete this post?"
+                      onConfirm={onDelete}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+            <Button icon={<DeleteOutlined />} danger>
+              Delete
+            </Button>
+          </Popconfirm>
         </Space>
       </Space>
     </Card>

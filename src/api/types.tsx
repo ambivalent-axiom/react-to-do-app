@@ -30,14 +30,14 @@ export interface TodoFormValues {
 
 export type PostListProps = {
   posts: Post[];
-  onShow: (id: number) => void;
+  onShow: (id: string) => void;
   onEdit: (todo: Post) => void;
-  onDelete: (id: number) => void;
-  onToggleCompleted: (id: number, completed: boolean) => void;
+  onDelete: (id: string) => void;
+  onToggleCompleted: (id: string, completed: boolean) => void;
 }
 
 export type PostListItemProps = {
-  key: number
+  key: string
   title: string;
   description: string;
   completed: boolean;

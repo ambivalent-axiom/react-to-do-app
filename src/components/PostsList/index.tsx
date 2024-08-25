@@ -2,7 +2,14 @@ import { List } from 'antd';
 import { PostListItem } from './PostListItem';
 import { PostListProps } from '../../api/types';
 
-export const PostsList = ({ posts, onEdit, onShow, onDelete, onToggleCompleted }: PostListProps) => {
+export const PostsList = ({ 
+  posts, 
+  onEdit, 
+  onShow, 
+  onDelete, 
+  onToggleCompleted 
+}: PostListProps
+) => {
   return (
     <List
       dataSource={posts}

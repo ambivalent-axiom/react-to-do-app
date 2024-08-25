@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spin, Button, Layout, Card } from 'antd';
+import { Spin, Button, Layout, Card, message } from 'antd';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { PostsList } from '../PostsList';
 import TodoFormModal from '../TodoFormModal';
@@ -16,19 +16,31 @@ const PostIndex: React.FC = () => {
   });
   const createMutation = useMutation({
     mutationFn: createTodo,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['todos'] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] });
+      message.success('Todo created successfully');
+    },
   });
   const updateMutation = useMutation({
     mutationFn: updateTodo,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['todos'] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] });
+      message.success('Todo updated successfully');
+    },
   });
   const deleteMutation = useMutation({
     mutationFn: deleteTodo,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['todos'] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] });
+      message.success('Todo deleted successfully');
+    },
   });
   const toggleCompletedMutation = useMutation({
     mutationFn: toggleCompleted,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['todos'] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] });
+      message.success('Todo updated successfully');
+    },
   });
   const handleOpenModal = (todo?: TodoFormValues) => {
     setCurrentTodo(todo || null);
