@@ -1,23 +1,9 @@
 import React from 'react';
 import { Input, Button, List, Typography } from 'antd';
 import PostCommentItem from './PostCommentItem';
-import { Comment } from '../../../api/types';
+import { PostCommentsProps } from '../../../api/types';
 
 const { Title } = Typography;
-
-interface PostCommentsProps {
-  comments: Comment[];
-  isEditing: string | null;
-  editedCommentContent: string;
-  newComment: string;
-  onEditComment: (comment: Comment) => void;
-  onDeleteComment: (commentId: string) => void;
-  onUpdateComment: () => void;
-  onCancelEdit: () => void;
-  onChangeEditContent: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onChangeNewComment: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onAddComment: () => void;
-}
 
 const PostComments: React.FC<PostCommentsProps> = ({
   comments,

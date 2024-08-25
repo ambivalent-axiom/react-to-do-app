@@ -46,3 +46,28 @@ export type PostListItemProps = {
   onDelete: () => void;
   onToggleCompleted: () => void;
 };
+
+export interface PostCommentsProps {
+  comments: Comment[];
+  isEditing: string | null;
+  editedCommentContent: string;
+  newComment: string;
+  onEditComment: (comment: Comment) => void;
+  onDeleteComment: (commentId: string) => void;
+  onUpdateComment: () => void;
+  onCancelEdit: () => void;
+  onChangeEditContent: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeNewComment: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onAddComment: () => void;
+}
+
+export interface PostCommentItemProps {
+  comment: Comment;
+  isEditing: boolean;
+  editedCommentContent: string;
+  onEdit: (comment: Comment) => void;
+  onDelete: (commentId: string) => void;
+  onUpdate: () => void;
+  onCancelEdit: () => void;
+  onContentChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}

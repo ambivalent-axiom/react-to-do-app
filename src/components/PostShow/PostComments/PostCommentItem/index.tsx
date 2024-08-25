@@ -1,20 +1,9 @@
 import React from 'react';
 import { Button, Input, List, Popconfirm, Typography } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Comment } from '../../../../api/types';
+import { PostCommentItemProps } from '../../../../api/types';
 
 const { Text } = Typography;
-
-interface PostCommentItemProps {
-  comment: Comment;
-  isEditing: boolean;
-  editedCommentContent: string;
-  onEdit: (comment: Comment) => void;
-  onDelete: (commentId: string) => void;
-  onUpdate: () => void;
-  onCancelEdit: () => void;
-  onContentChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
 
 const PostCommentItem: React.FC<PostCommentItemProps> = ({
   comment,

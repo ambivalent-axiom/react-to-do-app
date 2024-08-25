@@ -1,15 +1,15 @@
+import React from 'react';
 import { Modal, Form, Input, Button } from 'antd';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import React from 'react';
 import { TodoFormModalProps, TodoFormValues } from '../../api/types';
 
-const TodoFormModal = ({ 
+const TodoFormModal: React.FC<TodoFormModalProps> = ({ 
   visible, 
   onCancel, 
   onSubmit, 
   initialValues, 
   isEditing 
-}: TodoFormModalProps) => {
+}) => {
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
 
@@ -24,9 +24,11 @@ const TodoFormModal = ({
     },
   });
 
-  // We still need this to set form values when modal is opened or initialValues changes
+  // Set form values when modal is opened or initialValues changes
   React.useEffect(() => {
-    form.setFieldsValue(initialValues);
+    if (visible) {
+      form.setFieldsValue(initialValues);
+    }
   }, [visible, initialValues, form]);
 
   const handleFinish = (values: TodoFormValues) => {
@@ -41,7 +43,7 @@ const TodoFormModal = ({
       footer={null}
     >
       <Form
-        form={form}
+        form={form}  // Ensure form prop is passed
         layout="vertical"
         onFinish={handleFinish}
         initialValues={initialValues}
