@@ -12,6 +12,7 @@ Simple ToDo list app featuring creating ToDo records, deleting and editing Todo 
     <img src="https://img.icons8.com/?size=60&id=uJM6fQYqDaZK&format=png&color=000000">
     <img src="https://img.icons8.com/?size=60&id=wPohyHO_qO1a&format=png&color=000000">
     <img src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" width="60">
+    <img src="https://tanstack.com/_build/assets/logo-color-600w-Bx4vtR8J.png" width="60">
 </p>
 <p align="center">
     <img src="to-do-app.gif"/>
