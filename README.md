@@ -7,6 +7,9 @@ This is a React CRUD project by ambax/Artūrs Melnis.
 Simple ToDo list app featuring creating ToDo records, deleting and editing Todo records as well as viewing the record adding comments to it, deleting and editing comments.
 </p>
 
+<h2>Features</h2>
+<img src="https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000">
+
 <img src="to-do-app.gif"/>
 
 <h2 align="center">Setup</h2>
