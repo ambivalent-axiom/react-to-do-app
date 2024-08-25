@@ -8,7 +8,7 @@ export const fetchData = async () => {
     return data;
 };
 
-export const fetchTodoById = async (id: number) => {
+export const fetchTodoById = async (id: string) => {
   const response = await fetch(`http://localhost:3004/posts/${id}`);
   if (!response.ok) throw new Error('Network response was not ok');
   return response.json();
@@ -36,7 +36,7 @@ export const createTodo = async ({
   return response.json();
 };
 
-export const updateTodo = async (todo: TodoFormValues & { id: number }) => {
+export const updateTodo = async (todo: TodoFormValues & { id: string }) => {
   const response = await fetch(`http://localhost:3004/posts/${todo.id}`, {
     method: 'PUT',
     headers: {
@@ -52,7 +52,7 @@ export const updateTodo = async (todo: TodoFormValues & { id: number }) => {
   return response.json();
 };
 
-export const deleteTodo = async (id: number) => {
+export const deleteTodo = async (id: string) => {
   const response = await fetch(`http://localhost:3004/posts/${id}`, {
     method: 'DELETE',
   });
@@ -64,7 +64,7 @@ export const deleteTodo = async (id: number) => {
   return id; // Return the id of the deleted todo
 };
 
-export const toggleCompleted = async (todo: { id: number; completed: boolean }) => {
+export const toggleCompleted = async (todo: { id: string; completed: boolean }) => {
   const response = await fetch(`http://localhost:3004/posts/${todo.id}`, {
     method: 'PATCH',
     headers: {

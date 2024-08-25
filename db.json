@@ -2,18 +2,15 @@
   "posts": [
     {
       "id": "f9f6",
-      "title": "Tester",
-      "description": "sdfsfd"
-    },
-    {
-      "id": "91b3",
-      "title": "dog",
-      "description": "gosdsdsd"
+      "title": "Tester4",
+      "description": "sdfsfd",
+      "completed": false
     },
     {
       "id": "7382",
       "title": "Test1",
-      "description": "Tester2"
+      "description": "Tester2",
+      "completed": false
     }
   ]
 }
