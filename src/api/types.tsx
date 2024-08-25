@@ -3,7 +3,17 @@ export interface Post {
     title: string;
     description: string;
     completed: boolean;
+    comments: Comment[];
   }
+
+export interface Comment {
+  id: string;
+  content: string;
+}
+
+export interface TodoShowProps {
+  todoId: string;
+}
 
 export interface TodoFormModalProps {
   visible: boolean;

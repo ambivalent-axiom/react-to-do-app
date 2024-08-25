@@ -52,6 +52,7 @@ const PostIndex: React.FC = () => {
   };
 
   if (isLoading) return <Spin />;
+
   return (
     <>
         <div className="p-2" style={{ marginLeft: '40px' }}>
