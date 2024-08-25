@@ -8,12 +8,14 @@ Simple ToDo list app featuring creating ToDo records, deleting and editing Todo 
 </p>
 
 <h2>Features</h2>
-<img src="https://img.icons8.com/?size=60&id=uJM6fQYqDaZK&format=png&color=000000">
-<img src="https://img.icons8.com/?size=60&id=wPohyHO_qO1a&format=png&color=000000">
-<img src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg">
-
-<img src="to-do-app.gif"/>
-
+<p align="center">
+    <img src="https://img.icons8.com/?size=60&id=uJM6fQYqDaZK&format=png&color=000000">
+    <img src="https://img.icons8.com/?size=60&id=wPohyHO_qO1a&format=png&color=000000">
+    <img src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" width="60">
+</p>
+<p align="center">
+    <img src="to-do-app.gif"/>
+</p>
 <h2 align="center">Setup</h2>
 
 - ```git clone https://github.com/ambivalent-axiom/react-to-do-app.git``` Clone the Repository
