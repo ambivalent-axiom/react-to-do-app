@@ -10,6 +10,7 @@ const PostIndex: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [currentTodo, setCurrentTodo] = React.useState<TodoFormValues | null>(null);
   const queryClient = useQueryClient();
+  
   const { isLoading, data: posts } = useQuery({
     queryKey: ['todos'],
     queryFn: fetchData,
